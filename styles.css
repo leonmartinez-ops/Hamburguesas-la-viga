@@ -64,3 +64,17 @@
 /* reviews CTA: lower-right utility position, clear of logo/product/copy */
 .google-reviews{top:auto!important;left:auto!important;right:5.5vw!important;bottom:13.7vh!important;transform:none!important;z-index:80!important}
 .google-reviews:active{transform:scale(.96)!important}
+
+/* reviews CTA beside the small PEDIR button */
+.google-reviews{
+ top:auto!important;
+ left:auto!important;
+ right:7vw!important;
+ bottom:20.2vh!important;
+ transform:none!important;
+ z-index:90!important;
+}
+.google-reviews:active{transform:scale(.96)!important}
+@media(max-height:700px){
+ .google-reviews{bottom:19.5vh!important}
+}
