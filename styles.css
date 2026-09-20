@@ -140,3 +140,22 @@
  filter:blur(.2px);
 }
 .slide{z-index:2!important}
+
+/* stronger visible product rays */
+.product-rays{
+ top:20vh!important;height:62vh!important;width:115vw!important;
+ opacity:.82!important;
+ background:
+ conic-gradient(from 246deg at 50% 48%,
+ transparent 0 7deg,rgba(255,205,105,.72) 7deg 8.8deg,transparent 8.8deg 23deg,
+ rgba(255,92,42,.52) 23deg 25deg,transparent 25deg 41deg,
+ rgba(255,220,125,.68) 41deg 43deg,transparent 43deg 61deg,
+ rgba(255,88,38,.48) 61deg 63deg,transparent 63deg 82deg,
+ rgba(255,210,105,.74) 82deg 84deg,transparent 84deg 104deg,
+ rgba(255,88,38,.48) 104deg 106deg,transparent 106deg 127deg,
+ rgba(255,220,125,.68) 127deg 129deg,transparent 129deg 150deg,
+ rgba(255,92,42,.52) 150deg 152deg,transparent 152deg 180deg)!important;
+ -webkit-mask-image:radial-gradient(ellipse at 50% 48%,#000 0 28%,rgba(0,0,0,.95) 45%,transparent 88%)!important;
+ mask-image:radial-gradient(ellipse at 50% 48%,#000 0 28%,rgba(0,0,0,.95) 45%,transparent 88%)!important;
+ filter:drop-shadow(0 0 10px rgba(255,80,35,.22))!important;
+}
