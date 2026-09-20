@@ -63,14 +63,19 @@ const categoryButtons=[...document.querySelectorAll('.category-nav button')];
 function categoryFor(i){if(i===5)return 'PAPAS';if(i===6||i===7)return 'POLLO';if(i===4)return 'ESPECIALES';return 'HAMBURGUESAS'}
 function updateCategory(i){const cat=categoryFor(i);categoryButtons.forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat));const active=categoryButtons.find(b=>b.classList.contains('active'));active?.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
 function goCategory(i){
- const w=rail.clientWidth;
+ const slide=slides[i];
+ if(!slide)return;
  target=i;
- rail.scrollTo({left:i*w,behavior:'smooth'});
+ const left=slide.offsetLeft;
+ rail.scrollTo({left:left,behavior:'smooth'});
  updateCategory(i);
+ if(!raf)raf=requestAnimationFrame(animate);
 }
 categoryButtons.forEach(b=>{
- const go=e=>{e.preventDefault();e.stopPropagation();goCategory(Number(b.dataset.slide))};
- b.addEventListener('click',go);
- b.addEventListener('touchend',go,{passive:false});
+ b.onclick=(e)=>{
+   e.preventDefault();
+   e.stopPropagation();
+   goCategory(Number(b.dataset.slide));
+ };
 });
 updateCategory(target);
