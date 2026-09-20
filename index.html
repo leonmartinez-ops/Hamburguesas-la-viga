@@ -1,47 +1,10 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#17100c">
-<title>Hamburguesas al Carbón La Viga</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<header class="topbar"><div class="brand">LA VIGA</div><button class="menuBtn" aria-label="Abrir menú">MENÚ</button></header>
-<main>
-<section class="hero panel">
-  <div class="ember"></div>
-  <div class="heroCopy"><p class="eyebrow">HAMBURGUESAS AL CARBÓN</p><h1>HECHAS<br>AL FUEGO.</h1><p class="lede">Carbón, queso fundido y sabor de barrio.</p></div>
-  <div class="heroProduct asset-placeholder" data-label="PORTADA 9:16"></div>
-  <div class="scrollHint">DESLIZA ↓</div>
-</section>
-<section class="intro"><p>DIRECTO DEL CARBÓN</p><h2>Elige la tuya.</h2></section>
-<section class="product panel" data-product="queso">
- <div class="number">01</div><div class="productAsset asset-placeholder" data-label="CON QUESO"></div>
- <div class="productCopy"><p class="kicker">LA CLÁSICA</p><h2>Con<br>queso</h2><p>Carne al carbón, queso fundido, aguacate y vegetales.</p><button class="order">PEDIR</button></div>
-</section>
-<section class="product panel alt" data-product="sencilla">
- <div class="number">02</div><div class="productAsset asset-placeholder" data-label="SENCILLA"></div>
- <div class="productCopy"><p class="kicker">SIN RODEOS</p><h2>Sencilla</h2><p>Carne delgada al carbón, aguacate, vegetales y salsas.</p><button class="order">PEDIR</button></div>
-</section>
-<section class="product panel" data-product="hawaiana">
- <div class="number">03</div><div class="productAsset asset-placeholder" data-label="HAWAIANA + TOCINO"></div>
- <div class="productCopy"><p class="kicker">DULCE + AHUMADO</p><h2>Hawaiana<br>con tocino</h2><button class="order">PEDIR</button></div>
-</section>
-<section class="product panel alt" data-product="doble">
- <div class="number">04</div><div class="productAsset asset-placeholder" data-label="DOBLE QUESO"></div>
- <div class="productCopy"><p class="kicker">MÁS QUESO</p><h2>Doble<br>queso</h2><button class="order">PEDIR</button></div>
-</section>
-<section class="product panel special" data-product="especial">
- <div class="number">05</div><div class="productAsset asset-placeholder" data-label="ESPECIAL"></div>
- <div class="productCopy"><p class="kicker">LA GRANDE</p><h2>Especial</h2><button class="order">PEDIR</button></div>
-</section>
-<section class="extras">
- <p class="kicker">PARA ACOMPAÑAR</p><h2>También hay<br>antojo.</h2>
- <div class="chips"><span>Papas</span><span>Alitas</span><span>Boneless</span></div>
-</section>
-</main>
-<nav class="dock"><a href="#top" aria-label="Inicio">⌂</a><button class="dockOrder">PEDIR POR WHATSAPP</button></nav>
-<script src="app.js"></script>
-</body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#17100c"><title>Hamburguesas al Carbón La Viga</title><link rel="stylesheet" href="styles.css"></head><body>
+<header class="topbar"><div class="brand">LA VIGA</div><div class="counter"><b id="current">01</b> / 06</div></header>
+<main class="rail" id="rail">
+<section class="slide hero"><div class="glow"></div><div class="ghost">CARBÓN</div><div class="copy"><p>HAMBURGUESAS AL CARBÓN</p><h1>HECHAS<br>AL FUEGO.</h1><span>Desliza para explorar →</span></div><div class="food placeholder">PORTADA</div></section>
+<section class="slide red"><div class="ghost">QUESO</div><div class="food placeholder">CON QUESO</div><div class="copy"><p>LA CLÁSICA</p><h2>Con<br>queso</h2><span>Carne al carbón · queso fundido · aguacate</span></div></section>
+<section class="slide yellow"><div class="ghost">SENCILLA</div><div class="food placeholder">SENCILLA</div><div class="copy dark"><p>SIN RODEOS</p><h2>Sencilla</h2><span>Carne delgada al carbón · vegetales · aguacate</span></div></section>
+<section class="slide red"><div class="ghost">HAWAIANA</div><div class="food placeholder">HAWAIANA + TOCINO</div><div class="copy"><p>DULCE + AHUMADO</p><h2>Hawaiana<br>con tocino</h2></div></section>
+<section class="slide yellow"><div class="ghost">DOBLE</div><div class="food placeholder">DOBLE QUESO</div><div class="copy dark"><p>MÁS QUESO</p><h2>Doble<br>queso</h2></div></section>
+<section class="slide black"><div class="ghost">ESPECIAL</div><div class="food placeholder">ESPECIAL</div><div class="copy"><p>LA GRANDE</p><h2>Especial</h2><span>Papas · Alitas · Boneless</span></div></section>
+</main><nav class="dock"><button id="prev">←</button><button class="wa">PEDIR POR WHATSAPP</button><button id="next">→</button></nav><script src="app.js"></script></body></html>
