@@ -34,7 +34,7 @@ function animate(){
  if(brand){const warm=[['#ffd08a','#ffb14a'],['#7a3512','#b85b16'],['#ffd39a','#e89a4b']];const ca=warm[base%3],cb=warm[(base+1)%3];brand.style.color=mix(ca[0],cb[0],p);brand.style.textShadow='0 1px 10px rgba(0,0,0,.22)';}
  if(Math.abs(pos-rail.scrollLeft)>.08)raf=requestAnimationFrame(animate);else raf=0
 }
-function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0');if(typeof updateCategory==='function')updateCategory(target)}
+function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0');const btns=document.querySelectorAll('.category-nav button');const cat=target===5?'PAPAS':(target===6||target===7?'POLLO':(target===4?'ESPECIALES':'HAMBURGUESAS'));btns.forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat))}
 rail.addEventListener('scroll',render,{passive:true});document.querySelector('#next').onclick=()=>slides[Math.min(target+1,slides.length-1)].scrollIntoView({behavior:'smooth',inline:'start'});document.querySelector('#prev').onclick=()=>slides[Math.max(target-1,0)].scrollIntoView({behavior:'smooth',inline:'start'});render();
 
 // Lightweight order cart — keeps the approved menu motion untouched.
@@ -58,24 +58,25 @@ document.querySelector('#cartClose').onclick=closeCart;document.querySelector('#
 document.querySelector('#sendOrder').onclick=()=>{const entries=Object.entries(cart);if(!entries.length)return;const total=cartCount();const message='Hola, quiero hacer un pedido en Hamburguesas al Carbón La Viga:\n\n'+entries.map(([n,q])=>q+' × '+n).join('\n')+'\n\nTotal: '+total+' '+(total===1?'producto':'productos');const number=(document.body.dataset.whatsapp||'').replace(/\D/g,'');if(number){location.href='https://wa.me/'+number+'?text='+encodeURIComponent(message)}else{navigator.clipboard?.writeText(message);toast.textContent='Pedido listo. Falta conectar el número de WhatsApp.';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600);closeCart()}};
 loadCart();updateCartButton();renderCart();
 
-// Category shortcuts: navigation only; carousel physics remain unchanged.
-const categoryButtons=[...document.querySelectorAll('.category-nav button')];
-function categoryFor(i){if(i===5)return 'PAPAS';if(i===6||i===7)return 'POLLO';if(i===4)return 'ESPECIALES';return 'HAMBURGUESAS'}
-function updateCategory(i){if(!categoryButtons)return;const cat=categoryFor(i);categoryButtons.forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat))}
-function goCategory(i){
- const slide=slides[i];
- if(!slide)return;
- target=i;
- const left=slide.offsetLeft;
- rail.scrollTo({left:left,behavior:'smooth'});
- updateCategory(i);
- if(!raf)raf=requestAnimationFrame(animate);
-}
-categoryButtons.forEach(b=>{
- b.onclick=(e)=>{
+// Category shortcuts — direct, delegated mobile navigation.
+const categoryNav=document.querySelector('.category-nav');
+if(categoryNav){
+ categoryNav.addEventListener('pointerup',e=>{
+   const b=e.target.closest('button[data-slide]');
+   if(!b)return;
+   e.preventDefault();e.stopPropagation();
+   const i=parseInt(b.dataset.slide,10);
+   if(Number.isNaN(i)||!slides[i])return;
+   target=i;
+   const left=slides[i].offsetLeft;
+   rail.scrollLeft=left;
+   pos=left;
+   render();
+ },true);
+ categoryNav.addEventListener('click',e=>{
+   const b=e.target.closest('button[data-slide]');
+   if(!b)return;
    e.preventDefault();
-   e.stopPropagation();
-   goCategory(Number(b.dataset.slide));
- };
-});
-updateCategory(target);
+ },true);
+}
+render();
