@@ -62,5 +62,5 @@ loadCart();updateCartButton();renderCart();
 const categoryButtons=[...document.querySelectorAll('.category-nav button')];
 function categoryFor(i){if(i===5)return 'PAPAS';if(i===6||i===7)return 'POLLO';if(i===4)return 'ESPECIALES';return 'HAMBURGUESAS'}
 function updateCategory(i){const cat=categoryFor(i);categoryButtons.forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat));const active=categoryButtons.find(b=>b.classList.contains('active'));active?.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
-categoryButtons.forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.slide);slides[i]?.scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'})}));
+categoryButtons.forEach(b=>b.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();const i=Number(b.dataset.slide);const w=slides[0].getBoundingClientRect().width;target=i;rail.scrollTo({left:i*w,behavior:'smooth'});updateCategory(i)}));
 updateCategory(target);
