@@ -7,3 +7,9 @@
 .copy h2{margin:0 auto 16px!important}
 .ghost{top:34vh!important}
 @media(max-height:700px){.menu-logo{top:9.8vh!important}.copy{top:18.2vh!important}.ghost{top:33vh!important}}
+
+/* full official-style lockup */
+.menu-logo{position:fixed!important;z-index:45!important;top:6.7vh!important;left:50%!important;width:180px!important;height:135px!important;object-fit:contain!important;transform:translateX(-50%)!important;filter:drop-shadow(0 8px 14px #0005)!important}
+.copy{top:22.5vh!important;bottom:auto!important}
+.ghost{top:36vh!important}
+@media(max-height:700px){.menu-logo{top:5.8vh!important;width:158px!important;height:118px!important}.copy{top:21.5vh!important}.ghost{top:35vh!important}}
