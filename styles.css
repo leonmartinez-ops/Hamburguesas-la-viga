@@ -13,3 +13,9 @@
 .copy{top:22.5vh!important;bottom:auto!important}
 .ghost{top:36vh!important}
 @media(max-height:700px){.menu-logo{top:5.8vh!important;width:158px!important;height:118px!important}.copy{top:21.5vh!important}.ghost{top:35vh!important}}
+
+/* spacing correction: logo clear of copy/product */
+.menu-logo{top:2.8vh!important;width:150px!important;height:112px!important}
+.copy{top:20.5vh!important}
+.ghost{top:34vh!important}
+@media(max-height:700px){.menu-logo{top:2vh!important;width:138px!important;height:102px!important}.copy{top:19.5vh!important}.ghost{top:33vh!important}}
