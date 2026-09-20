@@ -118,3 +118,25 @@
  margin:0!important;
 }
 .copy .action-row .miniOrder{margin:0!important}
+
+/* subtle product-focus rays: fixed ornament, product remains the hero */
+.product-rays{
+ position:fixed;z-index:1;pointer-events:none;
+ left:50%;top:24vh;width:100vw;height:54vh;
+ transform:translateX(-50%);
+ opacity:.38;
+ background:
+ conic-gradient(from 248deg at 50% 47%,
+ transparent 0deg 8deg,rgba(255,185,92,.32) 8deg 9.3deg,transparent 9.3deg 24deg,
+ rgba(255,112,55,.22) 24deg 25.4deg,transparent 25.4deg 43deg,
+ rgba(255,200,105,.28) 43deg 44.2deg,transparent 44.2deg 65deg,
+ rgba(255,96,48,.20) 65deg 66.4deg,transparent 66.4deg 88deg,
+ rgba(255,190,88,.30) 88deg 89.3deg,transparent 89.3deg 111deg,
+ rgba(255,96,48,.20) 111deg 112.4deg,transparent 112.4deg 136deg,
+ rgba(255,200,105,.28) 136deg 137.2deg,transparent 137.2deg 160deg,
+ rgba(255,112,55,.22) 160deg 161.4deg,transparent 161.4deg 180deg);
+ -webkit-mask-image:radial-gradient(ellipse at 50% 47%,#000 0 20%,rgba(0,0,0,.9) 35%,transparent 76%);
+ mask-image:radial-gradient(ellipse at 50% 47%,#000 0 20%,rgba(0,0,0,.9) 35%,transparent 76%);
+ filter:blur(.2px);
+}
+.slide{z-index:2!important}
