@@ -19,3 +19,18 @@
 .copy{top:20.5vh!important}
 .ghost{top:34vh!important}
 @media(max-height:700px){.menu-logo{top:2vh!important;width:138px!important;height:102px!important}.copy{top:19.5vh!important}.ghost{top:33vh!important}}
+
+/* client-ready hierarchy: logo > product > copy */
+.menu-logo{top:2.2vh!important;width:145px!important;height:108px!important}
+.food{top:18vh!important;height:51vh!important}
+.copy{top:auto!important;bottom:12.2vh!important;left:6vw!important;right:6vw!important;text-align:center!important}
+.copy .kicker{margin:0 0 5px!important}
+.copy h2{font-size:11.2vw!important;line-height:.88!important;margin:0 auto 11px!important;max-width:94vw!important}
+.copy .order{margin-top:0!important}
+.ghost{top:29vh!important}
+@media(max-height:700px){
+ .menu-logo{top:1.5vh!important;width:130px!important;height:96px!important}
+ .food{top:17vh!important;height:49vh!important}
+ .copy{top:auto!important;bottom:12vh!important}
+ .copy h2{font-size:10.8vw!important}
+}
