@@ -78,3 +78,12 @@
 @media(max-height:700px){
  .google-reviews{bottom:19.5vh!important}
 }
+
+/* Google reviews badge — beside PEDIR, reference style */
+.action-row{display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important}
+.action-row .miniOrder{margin:0!important}
+.google-reviews{position:static!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:0!important;width:104px!important;height:48px!important;padding:4px 9px!important;border:0!important;border-radius:18px!important;background:#fff!important;text-decoration:none!important;box-shadow:0 7px 18px #0002!important;transform:none!important;opacity:1!important;visibility:visible!important}
+.google-word{font:700 17px/18px Arial,sans-serif!important;letter-spacing:-1px!important}
+.google-word i{font-style:normal!important}.gb{color:#4285F4!important}.gr{color:#EA4335!important}.gy{color:#FBBC05!important}.gg{color:#34A853!important}
+.stars{color:#FABB05!important;font:900 14px/15px Arial,sans-serif!important;letter-spacing:0!important}
+.google-reviews:active{transform:scale(.96)!important}
