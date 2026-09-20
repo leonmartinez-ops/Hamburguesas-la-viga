@@ -1,20 +1,5 @@
-const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-const products=[...document.querySelectorAll('.product')];
-function render(){
- const h=innerHeight;
- document.querySelectorAll('.panel').forEach((el,i)=>{
-   const r=el.getBoundingClientRect();
-   const p=clamp((h-r.top)/(h+r.height),0,1);
-   if(i===0){el.style.setProperty('--shift',((p-.5)*90)+'px');el.style.setProperty('--scale',(0.9+p*.12).toFixed(3))}
- });
- products.forEach(el=>{
-   const r=el.getBoundingClientRect(), center=(r.top+r.height/2-h/2)/h;
-   const active=1-clamp(Math.abs(center),0,1);
-   el.style.setProperty('--py',(center*-70)+'px');
-   el.style.setProperty('--ps',(0.9+active*.1).toFixed(3));
-   el.style.setProperty('--ty',((1-active)*28)+'px');
-   el.style.setProperty('--op',(0.28+active*.72).toFixed(2));
- });
-}
-let ticking=false;addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{render();ticking=false});ticking=true}},{passive:true});addEventListener('resize',render);render();
-document.querySelectorAll('.order,.dockOrder').forEach(b=>b.addEventListener('click',()=>alert('Aquí conectaremos el WhatsApp de La Viga.')));
+const rail=document.querySelector('#rail'),slides=[...document.querySelectorAll('.slide')],current=document.querySelector('#current');let target=0,pos=0,raf=0;
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));const lerp=(a,b,t)=>a+(b-a)*t;
+function animate(){pos=lerp(pos,rail.scrollLeft,.095);const w=slides[0].getBoundingClientRect().width;slides.forEach((s,i)=>{const d=(i*w-pos)/w;const a=1-clamp(Math.abs(d),0,1);s.style.setProperty('--foodX',(d*-52)+'px');s.style.setProperty('--foodY',((1-a)*22)+'px');s.style.setProperty('--rot',(d*-1.8)+'deg');s.style.setProperty('--scale',(0.90+a*.10).toFixed(3));s.style.setProperty('--ghostX',(d*-120)+'px');s.style.setProperty('--copyX',(d*-30)+'px');s.style.setProperty('--copyOpacity',(0.35+a*.65).toFixed(2))});if(Math.abs(pos-rail.scrollLeft)>.1)raf=requestAnimationFrame(animate);else raf=0}
+function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0')}
+rail.addEventListener('scroll',render,{passive:true});document.querySelector('#next').onclick=()=>slides[Math.min(target+1,slides.length-1)].scrollIntoView({behavior:'smooth',inline:'start'});document.querySelector('#prev').onclick=()=>slides[Math.max(target-1,0)].scrollIntoView({behavior:'smooth',inline:'start'});document.querySelector('.wa').onclick=()=>alert('Aquí conectaremos el WhatsApp de La Viga.');render();
