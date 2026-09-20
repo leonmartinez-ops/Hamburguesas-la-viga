@@ -199,3 +199,6 @@
 .category-nav{top:15.4vh!important;z-index:100!important;pointer-events:auto!important;touch-action:manipulation!important}
 .category-nav button{pointer-events:auto!important;touch-action:manipulation!important;min-height:30px!important}
 @media(max-height:700px){.category-nav{top:14.7vh!important}}
+
+/* fixed product actions: independent from slide/copy transitions */
+.fixed-actions{position:fixed!important;z-index:110!important;left:50%!important;bottom:12.8vh!important;transform:translateX(-50%)!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;pointer-events:auto!important;white-space:nowrap!important}.fixed-actions .miniOrder{margin:0!important}.fixed-actions .google-reviews{position:static!important;transform:none!important;width:92px!important;height:43px!important;margin:0!important;pointer-events:auto!important}.copy{bottom:19.2vh!important}@media(max-height:700px){.fixed-actions{bottom:12.5vh!important}.copy{bottom:19vh!important}}
