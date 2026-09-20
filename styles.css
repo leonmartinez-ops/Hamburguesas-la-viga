@@ -107,3 +107,14 @@
 .action-row{position:relative!important;z-index:120!important;pointer-events:auto!important}
 .google-reviews{position:relative!important;z-index:121!important;pointer-events:auto!important;touch-action:manipulation!important}
 .google-reviews *{pointer-events:none!important}
+
+/* lock review badge beside PEDIR; override prior position rules */
+.copy .action-row{position:relative!important;z-index:120!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important}
+.copy .action-row .google-reviews{
+ position:static!important;
+ top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;
+ transform:none!important;
+ width:92px!important;height:43px!important;
+ margin:0!important;
+}
+.copy .action-row .miniOrder{margin:0!important}
