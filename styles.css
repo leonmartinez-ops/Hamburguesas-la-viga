@@ -87,3 +87,18 @@
 .google-word i{font-style:normal!important}.gb{color:#4285F4!important}.gr{color:#EA4335!important}.gy{color:#FBBC05!important}.gg{color:#34A853!important}
 .stars{color:#FABB05!important;font:900 14px/15px Arial,sans-serif!important;letter-spacing:0!important}
 .google-reviews:active{transform:scale(.96)!important}
+
+/* final vertical separation: product never enters copy/actions */
+.food{top:17vh!important;height:41vh!important;max-height:41vh!important}
+.copy{top:auto!important;bottom:12.8vh!important}
+.copy h2{font-size:8.8vw!important;line-height:.9!important;margin:0 auto 9px!important}
+.copy p{margin-bottom:5px!important}
+.action-row{gap:10px!important}
+.google-reviews{width:92px!important;height:43px!important;border-radius:16px!important}
+.google-word{font-size:15px!important;line-height:16px!important}
+.stars{font-size:12px!important;line-height:13px!important}
+@media(max-height:700px){
+ .food{top:16vh!important;height:39vh!important;max-height:39vh!important}
+ .copy{bottom:12.5vh!important}
+ .copy h2{font-size:8.2vw!important}
+}
