@@ -51,7 +51,7 @@ function changeItem(name,delta){cart[name]=(cart[name]||0)+delta;if(cart[name]<=
 function renderCart(){const entries=Object.entries(cart);cartItems.innerHTML=entries.length?entries.map(([name,qty])=>'<div class="cart-item"><span>'+name+'</span><div class="qty"><button data-name="'+name.replace(/"/g,'&quot;')+'" data-delta="-1">−</button><b>'+qty+'</b><button data-name="'+name.replace(/"/g,'&quot;')+'" data-delta="1">+</button></div></div>').join(''):'<div class="cart-empty">Desliza el menú y toca <b>AGREGAR +</b> en lo que quieras pedir.</div>';document.querySelector('#sendOrder').disabled=!entries.length}
 function openCart(){renderCart();sheet.classList.add('open');sheet.setAttribute('aria-hidden','false')}
 function closeCart(){sheet.classList.remove('open');sheet.setAttribute('aria-hidden','true')}
-document.querySelectorAll('.miniOrder').forEach((b,i)=>b.addEventListener('click',e=>{e.stopPropagation();addItem(productNames[i])}));
+const fixedAdd=document.querySelector('#fixedAdd');if(fixedAdd)fixedAdd.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();addItem(productNames[target])});
 cartItems.addEventListener('click',e=>{const b=e.target.closest('[data-delta]');if(b)changeItem(b.dataset.name,Number(b.dataset.delta))});
 waBtn.onclick=()=>cartCount()?openCart():flash('Agrega un producto primero');
 document.querySelector('#cartClose').onclick=closeCart;document.querySelector('#cartBackdrop').onclick=closeCart;
