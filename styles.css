@@ -159,3 +159,28 @@
  mask-image:radial-gradient(ellipse at 50% 48%,#000 0 28%,rgba(0,0,0,.95) 45%,transparent 88%)!important;
  filter:drop-shadow(0 0 10px rgba(255,80,35,.22))!important;
 }
+
+/* FINAL rays: atmospheric light BEHIND product, not graphic lines */
+.product-rays{
+ z-index:1!important;
+ top:19vh!important;
+ left:50%!important;
+ width:118vw!important;
+ height:62vh!important;
+ opacity:.72!important;
+ transform:translateX(-50%)!important;
+ background:
+   radial-gradient(ellipse at 50% 48%,rgba(255,230,145,.42) 0%,rgba(255,185,70,.18) 28%,transparent 58%),
+   repeating-conic-gradient(from 251deg at 50% 49%,
+     transparent 0deg 14deg,
+     rgba(255,225,145,.42) 14deg 18deg,
+     transparent 18deg 31deg)!important;
+ -webkit-mask-image:radial-gradient(ellipse at 50% 49%,#000 0 18%,rgba(0,0,0,.92) 38%,rgba(0,0,0,.45) 62%,transparent 88%)!important;
+ mask-image:radial-gradient(ellipse at 50% 49%,#000 0 18%,rgba(0,0,0,.92) 38%,rgba(0,0,0,.45) 62%,transparent 88%)!important;
+ filter:blur(13px) saturate(.9)!important;
+}
+.slide{position:relative!important;z-index:2!important}
+.food{position:absolute!important;z-index:5!important}
+.ghost{z-index:2!important}
+.copy{z-index:7!important}
+.menu-logo,.topbar{z-index:45!important}
