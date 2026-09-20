@@ -34,7 +34,7 @@ function animate(){
  if(brand){const warm=[['#ffd08a','#ffb14a'],['#7a3512','#b85b16'],['#ffd39a','#e89a4b']];const ca=warm[base%3],cb=warm[(base+1)%3];brand.style.color=mix(ca[0],cb[0],p);brand.style.textShadow='0 1px 10px rgba(0,0,0,.22)';}
  if(Math.abs(pos-rail.scrollLeft)>.08)raf=requestAnimationFrame(animate);else raf=0
 }
-function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0')}
+function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0');updateCategory(target)}
 rail.addEventListener('scroll',render,{passive:true});document.querySelector('#next').onclick=()=>slides[Math.min(target+1,slides.length-1)].scrollIntoView({behavior:'smooth',inline:'start'});document.querySelector('#prev').onclick=()=>slides[Math.max(target-1,0)].scrollIntoView({behavior:'smooth',inline:'start'});render();
 
 // Lightweight order cart — keeps the approved menu motion untouched.
@@ -57,3 +57,10 @@ waBtn.onclick=()=>cartCount()?openCart():flash('Agrega un producto primero');
 document.querySelector('#cartClose').onclick=closeCart;document.querySelector('#cartBackdrop').onclick=closeCart;
 document.querySelector('#sendOrder').onclick=()=>{const entries=Object.entries(cart);if(!entries.length)return;const total=cartCount();const message='Hola, quiero hacer un pedido en Hamburguesas al Carbón La Viga:\n\n'+entries.map(([n,q])=>q+' × '+n).join('\n')+'\n\nTotal: '+total+' '+(total===1?'producto':'productos');const number=(document.body.dataset.whatsapp||'').replace(/\D/g,'');if(number){location.href='https://wa.me/'+number+'?text='+encodeURIComponent(message)}else{navigator.clipboard?.writeText(message);toast.textContent='Pedido listo. Falta conectar el número de WhatsApp.';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600);closeCart()}};
 loadCart();updateCartButton();renderCart();
+
+// Category shortcuts: navigation only; carousel physics remain unchanged.
+const categoryButtons=[...document.querySelectorAll('.category-nav button')];
+function categoryFor(i){if(i===5)return 'PAPAS';if(i===6||i===7)return 'POLLO';if(i===4)return 'ESPECIALES';return 'HAMBURGUESAS'}
+function updateCategory(i){const cat=categoryFor(i);categoryButtons.forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat));const active=categoryButtons.find(b=>b.classList.contains('active'));active?.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+categoryButtons.forEach(b=>b.addEventListener('click',()=>{const i=Number(b.dataset.slide);slides[i]?.scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'})}));
+updateCategory(target);
