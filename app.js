@@ -30,6 +30,8 @@ function animate(){
    s.style.setProperty('--copyOpacity',Math.pow(a,2.35).toFixed(3));
  });
  stageBg.style.background=bgFor(base,p);
+ const brand=document.querySelector('.brand');
+ if(brand){const warm=[['#ffd08a','#ffb14a'],['#7a3512','#b85b16'],['#ffd39a','#e89a4b']];const ca=warm[base%3],cb=warm[(base+1)%3];brand.style.color=mix(ca[0],cb[0],p);brand.style.textShadow='0 1px 10px rgba(0,0,0,.22)';}
  if(Math.abs(pos-rail.scrollLeft)>.08)raf=requestAnimationFrame(animate);else raf=0
 }
 function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0')}
