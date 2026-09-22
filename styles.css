@@ -314,3 +314,25 @@
    max-height:47vh!important;
  }
 }
+
+/* Floating thumbnail Especial: restore the source image's natural aspect ratio.
+   Previous fixed-height rules made this tall burger look flattened. */
+.float-menu .float-card img[alt="Especial"]{
+  display:block!important;
+  width:112%!important;
+  max-width:none!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:translateX(-5.35%)!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+}
+@media(max-width:380px){
+ .float-menu .float-card img[alt="Especial"]{
+   width:112%!important;
+   height:auto!important;
+   transform:translateX(-5.35%)!important;
+ }
+}
