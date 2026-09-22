@@ -223,3 +223,13 @@
 
 /* Refrescos source has a baked white matte: blend it into the dark menu without affecting other cards */
 .float-card img[alt="Refrescos"]{mix-blend-mode:multiply!important;filter:contrast(1.08) saturate(1.08) drop-shadow(0 9px 8px #0007)!important}
+
+/* Refrescos: source image has an opaque white background. Crop tightly to the bottles so the matte is no longer visible. */
+.float-card img[alt="Refrescos"]{
+  mix-blend-mode:normal!important;
+  clip-path:inset(24% 8% 27% 8% round 18px)!important;
+  -webkit-clip-path:inset(24% 8% 27% 8% round 18px)!important;
+  transform:scale(1.45)!important;
+  transform-origin:center!important;
+  filter:drop-shadow(0 9px 8px #0007)!important;
+}
