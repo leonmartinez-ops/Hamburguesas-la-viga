@@ -336,3 +336,31 @@
    transform:translateX(-5.35%)!important;
  }
 }
+
+/* Floating menu: preserve the ORIGINAL composition of the two priority burgers.
+   Fit the complete source inside the card; never stretch/crop. */
+.float-menu .float-card img[alt="Especial"],
+.float-menu .float-card img[alt="Doble queso con piña"]{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:118px!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+}
+.float-menu .float-card:has(img[alt="Especial"]),
+.float-menu .float-card:has(img[alt="Doble queso con piña"]){
+  overflow:visible!important;
+}
+@media(max-width:380px){
+ .float-menu .float-card img[alt="Especial"],
+ .float-menu .float-card img[alt="Doble queso con piña"]{
+   width:100%!important;
+   height:112px!important;
+   transform:none!important;
+ }
+}
