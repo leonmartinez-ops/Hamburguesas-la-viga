@@ -233,3 +233,12 @@
   transform-origin:center!important;
   filter:drop-shadow(0 9px 8px #0007)!important;
 }
+
+/* New transparent Refrescos asset: reset previous temporary matte/crop workarounds */
+.float-card img[alt="Refrescos"]{
+ mix-blend-mode:normal!important;
+ clip-path:none!important;
+ -webkit-clip-path:none!important;
+ transform:none!important;
+ filter:drop-shadow(0 9px 8px #0007)!important;
+}
