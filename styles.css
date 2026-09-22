@@ -242,3 +242,26 @@
  transform:none!important;
  filter:drop-shadow(0 9px 8px #0007)!important;
 }
+
+/* Normalize floating-menu burger visual size without distorting aspect ratio */
+.float-menu .float-card img{
+ width:100%!important;
+ height:92px!important;
+ object-fit:contain!important;
+ object-position:center!important;
+}
+.float-menu .float-card img[alt="Doble queso"],
+.float-menu .float-card img[alt="Especial"]{
+ height:104px!important;
+ transform:scale(1.12)!important;
+ transform-origin:center!important;
+}
+.float-menu .float-card img[alt="Refrescos"]{
+ height:92px!important;
+ transform:none!important;
+}
+@media(max-width:380px){
+ .float-menu .float-card img{height:86px!important}
+ .float-menu .float-card img[alt="Doble queso"],
+ .float-menu .float-card img[alt="Especial"]{height:98px!important;transform:scale(1.1)!important}
+}
