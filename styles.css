@@ -298,3 +298,19 @@
    width:118%!important;height:98px!important;transform:translateX(-7.6%)!important;
  }
 }
+
+/* Main hero Especial — preserve original tall composition */
+.slide .food[alt="Especial"]{
+  top:13.5vh!important;
+  height:50vh!important;
+  max-height:50vh!important;
+  width:auto!important;
+  object-fit:contain!important;
+}
+@media(max-height:700px){
+ .slide .food[alt="Especial"]{
+   top:13vh!important;
+   height:47vh!important;
+   max-height:47vh!important;
+ }
+}
