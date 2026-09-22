@@ -265,3 +265,36 @@
  .float-menu .float-card img[alt="Doble queso"],
  .float-menu .float-card img[alt="Especial"]{height:98px!important;transform:scale(1.1)!important}
 }
+
+/* FINAL burger sizing correction — preserve natural proportions; normalize by width, not forced height */
+.float-menu .float-card img{
+  width:100%!important;
+  height:92px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+}
+.float-menu .float-card img[alt="Doble queso"],
+.float-menu .float-card img[alt="Especial"],
+.float-menu .float-card img[alt="Doble queso con piña"]{
+  width:118%!important;
+  max-width:none!important;
+  height:104px!important;
+  object-fit:contain!important;
+  transform:translateX(-7.6%)!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+}
+.float-menu .float-card img[alt="Refrescos"]{
+  width:100%!important;
+  height:92px!important;
+  transform:none!important;
+}
+@media(max-width:380px){
+ .float-menu .float-card img{height:86px!important}
+ .float-menu .float-card img[alt="Doble queso"],
+ .float-menu .float-card img[alt="Especial"],
+ .float-menu .float-card img[alt="Doble queso con piña"]{
+   width:118%!important;height:98px!important;transform:translateX(-7.6%)!important;
+ }
+}
