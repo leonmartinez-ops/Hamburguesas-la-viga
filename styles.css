@@ -220,3 +220,6 @@
 /* Floating-menu matte fix: hide any baked black corners without changing layout */
 .float-card{overflow:hidden!important}
 .float-card img{clip-path:ellipse(46% 45% at 50% 50%)!important;-webkit-clip-path:ellipse(46% 45% at 50% 50%)!important}
+
+/* Refrescos source has a baked white matte: blend it into the dark menu without affecting other cards */
+.float-card img[alt="Refrescos"]{mix-blend-mode:multiply!important;filter:contrast(1.08) saturate(1.08) drop-shadow(0 9px 8px #0007)!important}
