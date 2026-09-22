@@ -37,26 +37,6 @@ function animate(){
 function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0');const btns=document.querySelectorAll('.category-nav button');const cat=target===5?'PAPAS':(target===6||target===7?'POLLO':(target===4?'ESPECIALES':'HAMBURGUESAS'));btns.forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat))}
 rail.addEventListener('scroll',render,{passive:true});document.querySelector('#next').onclick=()=>slides[Math.min(target+1,slides.length-1)].scrollIntoView({behavior:'smooth',inline:'start'});document.querySelector('#prev').onclick=()=>slides[Math.max(target-1,0)].scrollIntoView({behavior:'smooth',inline:'start'});render();
 
-// Lightweight order cart — keeps the approved menu motion untouched.
-const cart={};
-const waBtn=document.querySelector('.wa'),sheet=document.querySelector('#cartSheet'),cartItems=document.querySelector('#cartItems'),toast=document.querySelector('#cartToast');
-const productNames=slides.map(s=>s.querySelector('h2').textContent.trim());
-function cartCount(){return Object.values(cart).reduce((a,b)=>a+b,0)}
-function saveCart(){try{localStorage.setItem('laviga-order',JSON.stringify(cart))}catch(e){}}
-function loadCart(){try{Object.assign(cart,JSON.parse(localStorage.getItem('laviga-order')||'{}'))}catch(e){}}
-function updateCartButton(){const n=cartCount();waBtn.textContent=n?('VER PEDIDO · '+n+' '+(n===1?'PRODUCTO':'PRODUCTOS')):'ARMA TU PEDIDO'}
-function flash(name){toast.textContent=name+' agregado ✓';toast.classList.add('show');clearTimeout(flash.t);flash.t=setTimeout(()=>toast.classList.remove('show'),1200)}
-function addItem(name){cart[name]=(cart[name]||0)+1;saveCart();updateCartButton();renderCart();flash(name)}
-function changeItem(name,delta){cart[name]=(cart[name]||0)+delta;if(cart[name]<=0)delete cart[name];saveCart();updateCartButton();renderCart()}
-function renderCart(){const entries=Object.entries(cart);cartItems.innerHTML=entries.length?entries.map(([name,qty])=>'<div class="cart-item"><span>'+name+'</span><div class="qty"><button data-name="'+name.replace(/"/g,'&quot;')+'" data-delta="-1">−</button><b>'+qty+'</b><button data-name="'+name.replace(/"/g,'&quot;')+'" data-delta="1">+</button></div></div>').join(''):'<div class="cart-empty">Desliza el menú y toca <b>AGREGAR +</b> en lo que quieras pedir.</div>';document.querySelector('#sendOrder').disabled=!entries.length}
-function openCart(){renderCart();sheet.classList.add('open');sheet.setAttribute('aria-hidden','false')}
-function closeCart(){sheet.classList.remove('open');sheet.setAttribute('aria-hidden','true')}
-const fixedAdd=document.querySelector('#fixedAdd');if(fixedAdd)fixedAdd.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();addItem(productNames[target])});
-cartItems.addEventListener('click',e=>{const b=e.target.closest('[data-delta]');if(b)changeItem(b.dataset.name,Number(b.dataset.delta))});
-waBtn.onclick=()=>cartCount()?openCart():flash('Agrega un producto primero');
-document.querySelector('#cartClose').onclick=closeCart;document.querySelector('#cartBackdrop').onclick=closeCart;
-document.querySelector('#sendOrder').onclick=()=>{const entries=Object.entries(cart);if(!entries.length)return;const total=cartCount();const message='Hola, quiero hacer un pedido en Hamburguesas al Carbón La Viga:\n\n'+entries.map(([n,q])=>q+' × '+n).join('\n')+'\n\nTotal: '+total+' '+(total===1?'producto':'productos');const number=(document.body.dataset.whatsapp||'').replace(/\D/g,'');if(number){location.href='https://wa.me/'+number+'?text='+encodeURIComponent(message)}else{navigator.clipboard?.writeText(message);toast.textContent='Pedido listo. Falta conectar el número de WhatsApp.';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600);closeCart()}};
-loadCart();updateCartButton();renderCart();
 
 // Category shortcuts — direct, delegated mobile navigation.
 const categoryNav=document.querySelector('.category-nav');
