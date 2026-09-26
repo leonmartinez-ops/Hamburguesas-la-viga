@@ -1,0 +1,6 @@
+/* Keep source product photos from showing their baked-in black rectangular canvas. */
+.slide .food{mix-blend-mode:screen!important;}
+/* PNG assets with transparency should render normally. */
+.slide .food[src*="7CDC55CF"],.slide .food[src*="9EFCE735"],.slide .food[src*="459FC521"],.slide .food[src*="1B84AD1E"],.slide .food[src*="00DBF7D3"],.slide .food[src*="12AE0EFD"],.slide .food[src*="8466592F"],.slide .food[src*="1A0C6FB1"],.slide .food[src*="8F994F41"],.slide .food[src*="76D340CB"],.slide .food[src*="475C7FDD"],.slide .food[src*="1B3ADB46"]{mix-blend-mode:normal!important;}
+/* The two source files below contain black backgrounds; screen removes black without changing layout/crop. */
+.slide .food[src*="BFDEC4EB"],.slide .food[src*="1BE92E77"]{mix-blend-mode:screen!important;filter:drop-shadow(0 30px 30px #0008) drop-shadow(0 6px 10px #0005)!important;}
