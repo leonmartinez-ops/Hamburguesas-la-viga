@@ -11,8 +11,6 @@ function animate(){
    const d=(i*w-pos)/w;
    const ad=Math.abs(d);
    const a=1-clamp(ad,0,1);
-   // Invisible carousel wheel: center is the top of a large ellipse.
-   // Current item falls outward while next item rises from the opposite side.
    const t=clamp(ad,0,1.15);
    const theta=t*Math.PI*.58;
    const side=d===0?0:Math.sign(d);
@@ -36,9 +34,6 @@ function animate(){
 }
 function render(){if(!raf)raf=requestAnimationFrame(animate);const w=slides[0].getBoundingClientRect().width;target=clamp(Math.round(rail.scrollLeft/w),0,slides.length-1);current.textContent=String(target+1).padStart(2,'0');const btns=document.querySelectorAll('.category-nav button');const cat=target===5?'PAPAS':(target===6||target===7?'POLLO':(target===4?'ESPECIALES':'HAMBURGUESAS'));btns.forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat))}
 rail.addEventListener('scroll',render,{passive:true});document.querySelector('#next').onclick=()=>slides[Math.min(target+1,slides.length-1)].scrollIntoView({behavior:'smooth',inline:'start'});document.querySelector('#prev').onclick=()=>slides[Math.max(target-1,0)].scrollIntoView({behavior:'smooth',inline:'start'});render();
-
-
-// Category shortcuts — direct, delegated mobile navigation.
 const categoryNav=document.querySelector('.category-nav');
 if(categoryNav){
  categoryNav.addEventListener('pointerup',e=>{
@@ -59,4 +54,6 @@ if(categoryNav){
    e.preventDefault();
  },true);
 }
+// Boneless file was uploaded as PNG. Correct both the hero and menu thumbnail paths.
+document.querySelectorAll('img[src*="76D340CB-ED39-4D1F-A6AC-D7EFA2DEEEDA.jpeg"]').forEach(img=>{img.src=img.src.replace('76D340CB-ED39-4D1F-A6AC-D7EFA2DEEEDA.jpeg','76D340CB-ED39-4D1F-A6AC-D7EFA2DEEEDA.png')});
 render();
